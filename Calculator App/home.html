@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotional Video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+        
+        .video-controls {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #ff5722;
+            border-radius: 4px;
+            width: 0%;
+        }
+        
+        .time-display {
+            font-size: 0.9rem;
+            color: #ddd;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+        }
+        
+        .fallback-message {
+            display: none;
+            background: #333;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .fallback-message h3 {
+            margin-bottom: 1rem;
+            color: #ff5722;
+        }
+        
+        .fallback-message p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .fallback-btn {
+            background: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .fallback-btn:hover {
+            background: #e64a19;
+        }
+        
+        .content {
+            margin-top: 2rem;
+            line-height: 1.6;
+        }
+        
+        .content h2 {
+            margin-bottom: 1rem;
+            color: #ffcc00;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature h3 {
+            margin-bottom: 0.5rem;
+            color: #4fc3f7;
+        }
+        
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .video-controls {
+                flex-wrap: wrap;
+            }
+            
+            .progress-container {
+                order: 1;
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Amazing Product Launch</h1>
+            <p class="subtitle">Watch our exclusive promotional video to learn more</p>
+        </header>
+        
+        <div class="video-container">
+            <video id="promoVideo" poster="https://placehold.co/1000x563/1a2a6c/ffffff?text=Promotional+Video">
+                <!-- Multiple video sources for better browser compatibility -->
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.ogv" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+            
+            <div class="video-controls">
+                <button class="control-btn" id="playPauseBtn">▶️</button>
+                <button class="control-btn" id="muteBtn">🔊</button>
+                <div class="volume-container">
+                    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="1">
+                </div>
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                <button class="control-btn" id="fullscreenBtn">⛶</button>
+            </div>
+        </div>
+        
+        <div class="fallback-message" id="fallbackMessage">
+            <h3>Video Not Supported</h3>
+            <p>We're sorry, but your browser doesn't support the video format. Please try using a modern browser like Chrome, Firefox, or Edge to view our promotional video.</p>
+            <p>In the meantime, you can:</p>
+            <button class="fallback-btn" id="fallbackBtn">Learn More About Our Product</button>
+        </div>
+        
+        <div class="content">
+            <h2>Revolutionary Features</h2>
+            <p>Our product is designed with cutting-edge technology to transform your daily experience. Watch the video to see it in action or explore the features below.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Smart Integration</h3>
+                    <p>Seamlessly connects with all your existing devices and platforms.</p>
+                </div>
+                <div class="feature">
+                    <h3>Advanced Analytics</h3>
+                    <p>Get insights and recommendations based on your usage patterns.</p>
+                </div>
+                <div class="feature">
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated team is always available to help you succeed.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Amazing Product Inc. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('promoVideo');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const progressBar = document.getElementById('progressBar');
+            const progressContainer = document.getElementById('progressContainer');
+            const timeDisplay = document.getElementById('timeDisplay');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            const fallbackMessage = document.getElementById('fallbackMessage');
+            const fallbackBtn = document.getElementById('fallbackBtn');
+            
+            // Check if video is supported
+            if (!video.canPlayType) {
+                showFallback();
+            } else {
+                // Set up event listeners for video controls
+                playPauseBtn.addEventListener('click', togglePlayPause);
+                muteBtn.addEventListener('click', toggleMute);
+                volumeSlider.addEventListener('input', setVolume);
+                video.addEventListener('timeupdate', updateProgress);
+                progressContainer.addEventListener('click', setProgress);
+                fullscreenBtn.addEventListener('click', toggleFullscreen);
+                video.addEventListener('loadedmetadata', updateTimeDisplay);
+                video.addEventListener('ended', resetPlayer);
+                
+                // Error handling for video
+                video.addEventListener('error', function() {
+                    console.error('Video loading error:', video.error);
+                    showFallback();
+                });
+                
+                // Check if video actually loads
+                video.addEventListener('canplay', function() {
+                    console.log('Video can play');
+                });
+            }
+            
+            // Fallback button action
+            fallbackBtn.addEventListener('click', function() {
+                alert('Thank you for your interest! Our product specialists will contact you soon.');
+            });
+            
+            function togglePlayPause() {
+                if (video.paused || video.ended) {
+                    video.play();
+                    playPauseBtn.textContent = '⏸️';
+                } else {
+                    video.pause();
+                    playPauseBtn.textContent = '▶️';
+                }
+            }
+            
+            function toggleMute() {
+                video.muted = !video.muted;
+                muteBtn.textContent = video.muted ? '🔇' : '🔊';
+            }
+            
+            function setVolume() {
+                video.volume = volumeSlider.value;
+                muteBtn.textContent = video.volume === 0 ? '🔇' : '🔊';
+            }
+            
+            function updateProgress() {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressBar.style.width = `${percent}%`;
+                updateTimeDisplay();
+            }
+            
+            function setProgress(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = video.duration;
+                
+                video.currentTime = (clickX / width) * duration;
+            }
+            
+            function updateTimeDisplay() {
+                const currentMinutes = Math.floor(video.currentTime / 60);
+                const currentSeconds = Math.floor(video.currentTime % 60);
+                const durationMinutes = Math.floor(video.duration / 60);
+                const durationSeconds = Math.floor(video.duration % 60);
+                
+                timeDisplay.textContent = 
+                    `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} / ${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
+            }
+            
+            function toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    video.requestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+            
+            function resetPlayer() {
+                playPauseBtn.textContent = '▶️';
+                progressBar.style.width = '0%';
+            }
+            
+            function showFallback() {
+                fallbackMessage.style.display = 'block';
+                document.querySelector('.video-container').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
